@@ -8,9 +8,15 @@ const ImageLinkForm =({onInputChange, onButtonSubmit}) => {
 				{'This Magic Brain will detect faces in your pictures. Git it a try'}
 			</p>
 			<div className=''>
-				<div className='form center pa4 br3 shadow-5'>
-					<input className="f4 pa2 w-70 center" type="tex" onChange={onInputChange}/>
-					<button className="w-30 grow f4 link ph3 pv2 dib white bg-light-grey"
+				<div 
+					className='form center pa4 br3 shadow-5'>
+				<input 
+					className="f4 pa2 w-70 center" 
+					type="tex" 
+					onChange={onInputChange}
+					/>
+				<button 
+					className="w-30 grow f4 link ph3 pv2 dib grey bg-light-grey"
 					onClick={onButtonSubmit}
 					>Detect</button>
 				</div>
