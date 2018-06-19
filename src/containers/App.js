@@ -8,6 +8,20 @@ import SignIn from '../component/SignIn';
 import Register from '../component/Register';
 import './App.css';
 
+const initialState= {
+  input: '',
+  imageUrl:'',
+  route: 'signin',
+  isSignedIn:false,
+  user: {
+    id: '',
+    name: '',
+    password: '',
+    email: '',
+    entries: '',
+    joined: ''
+  }
+}
 class App extends Component {
   constructor (){
     super();
@@ -57,9 +71,24 @@ class App extends Component {
     this.setState({imageUrl: this.state.input})
   }
 
+  onButtonSubmit =() =>{
+    fetch('http://localhost:3000/image', {
+      method: 'put',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        id: this.state.user.id
+      })
+    })
+    .then(response => response.json())
+    .then(count => {
+      this.setState(Object.assign(this.state.user, { entries:count}))
+    })
+    this.setState({imageUrl: this.state.input})
+  }
+
   onRouteChange= (route) => {
     if (route === 'signout'){
-      this.setState({isSignedIn: false})
+      this.setState(initialState)
     }else if  (route === 'home'){
       this.setState({isSignedIn: true})
     }
